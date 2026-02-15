@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -48,6 +48,15 @@ export function DashboardClient({
         <div className="mb-8 flex items-center justify-between">
           <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
           <div className="flex items-center gap-2">
+            <Button
+              onClick={() =>
+                router.push(`/dashboard/workout/new?date=${initialDateString}`)
+              }
+              className="gap-1"
+            >
+              <Plus className="h-4 w-4" />
+              Add Workout
+            </Button>
             <Button variant="outline" onClick={() => handleDateSelect(new Date())}>
               Today
             </Button>

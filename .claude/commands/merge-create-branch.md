@@ -1,0 +1,1 @@
+Merge the current branch into the main branch, resolve any merge issues, and create a new branch off of main called $ARGUMENTS 
