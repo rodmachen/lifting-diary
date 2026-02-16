@@ -1,6 +1,6 @@
 import { eq, and, inArray } from "drizzle-orm";
 import { db } from "@/db";
-import { workouts, workoutExercises, sets, exercises } from "@/db/schema";
+import { workouts, workoutExercises, sets } from "@/db/schema";
 
 export async function getWorkoutsByDate(userId: string, date: Date) {
   return db.query.workouts.findMany({
