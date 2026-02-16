@@ -6,6 +6,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **IMPORTANT**: Before generating any code, always check the `/docs` directory for relevant documentation files. These docs contain project-specific requirements, design specs, and conventions that must be followed. Read and reference the applicable docs file(s) before writing or modifying code.
 
+## Code Generation Guidelines
+
+Before writing or modifying code, consult the relevant documentation files listed below:
+
+- `/docs/auth.md` - Authentication standards using Clerk; no custom auth implementations
+- `/docs/data-fetching.md` - Data fetching conventions; server components only
+- `/docs/data-mutations.md` - Data mutation conventions; server actions only
+- `/docs/routing.md` - Route structure; all app routes live under /dashboard
+- `/docs/ui.md` - UI standards using shadcn/ui as the sole component library
+
 ## Project Overview
 
 This is a Next.js 16 application (React 19, TypeScript 5) using the App Router architecture. It was bootstrapped with create-next-app and uses Tailwind CSS 4 for styling.
