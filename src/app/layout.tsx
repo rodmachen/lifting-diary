@@ -38,7 +38,7 @@ export default function RootLayout({
         <head>
           <script
             dangerouslySetInnerHTML={{
-              __html: `(function(){var t=localStorage.getItem("theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.classList.add("dark")})()`,
+              __html: `(function(){var t=localStorage.getItem("theme");if(t!=="light")document.documentElement.classList.add("dark")})()`,
             }}
           />
         </head>
@@ -55,9 +55,9 @@ export default function RootLayout({
               </SignUpButton>
             </SignedOut>
             <SignedIn>
-              <DarkModeToggle />
               <UserButton />
             </SignedIn>
+            <DarkModeToggle />
           </header>
           {children}
         </body>

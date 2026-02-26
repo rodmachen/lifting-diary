@@ -21,17 +21,9 @@ export function DarkModeToggle() {
   const dark = useSyncExternalStore(subscribeToClass, getIsDark, () => false);
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
     if (!localStorage.getItem("theme")) {
-      document.documentElement.classList.toggle("dark", mq.matches);
+      document.documentElement.classList.add("dark");
     }
-    const handler = (e: MediaQueryListEvent) => {
-      if (!localStorage.getItem("theme")) {
-        document.documentElement.classList.toggle("dark", e.matches);
-      }
-    };
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
   }, []);
 
   function toggle() {
