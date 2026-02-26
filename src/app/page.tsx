@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import { AutoSignUp } from "@/components/auto-signup";
 
 export default async function Home() {
   const { userId } = await auth();
@@ -8,6 +9,7 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+      <AutoSignUp />
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         <Image
           className="dark:invert"
