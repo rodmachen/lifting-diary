@@ -161,34 +161,56 @@ export function WorkoutForm({
     <form onSubmit={handleSubmit} className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle>Date</CardTitle>
+          <div className="flex items-center gap-3">
+            <CardTitle>Date</CardTitle>
+            <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
+              <PopoverTrigger asChild>
+                <Button variant="outline" className="gap-2">
+                  <CalendarIcon className="h-4 w-4" />
+                  {format(date, "do MMM yyyy")}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={date}
+                  defaultMonth={date}
+                  onSelect={handleDateSelect}
+                  autoFocus
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
         </CardHeader>
-        <CardContent>
-          <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
-            <PopoverTrigger asChild>
-              <Button variant="outline" className="gap-2">
-                <CalendarIcon className="h-4 w-4" />
-                {format(date, "do MMM yyyy")}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
-              <Calendar
-                mode="single"
-                selected={date}
-                defaultMonth={date}
-                onSelect={handleDateSelect}
-                autoFocus
-              />
-            </PopoverContent>
-          </Popover>
-        </CardContent>
       </Card>
 
       {exerciseEntries.map((entry, exerciseIndex) => (
         <Card key={exerciseIndex}>
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle>Exercise {exerciseIndex + 1}</CardTitle>
+              <div className="flex items-center gap-3">
+                <CardTitle>Exercise {exerciseIndex + 1}</CardTitle>
+                <Select
+                  value={entry.exerciseId}
+                  onValueChange={(value) =>
+                    updateExerciseId(exerciseIndex, value)
+                  }
+                >
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Select an exercise" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {exercises.map((exercise) => (
+                      <SelectItem
+                        key={exercise.id}
+                        value={exercise.id.toString()}
+                      >
+                        {exercise.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
               {exerciseEntries.length > 1 && (
                 <Button
                   type="button"
@@ -202,29 +224,6 @@ export function WorkoutForm({
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Select
-                value={entry.exerciseId}
-                onValueChange={(value) =>
-                  updateExerciseId(exerciseIndex, value)
-                }
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select an exercise" />
-                </SelectTrigger>
-                <SelectContent>
-                  {exercises.map((exercise) => (
-                    <SelectItem
-                      key={exercise.id}
-                      value={exercise.id.toString()}
-                    >
-                      {exercise.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
             <div className="space-y-2">
               <Label>Sets</Label>
               <div className="space-y-2">
